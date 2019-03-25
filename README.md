@@ -7,6 +7,7 @@ Dependencies:
 - Pillow -- pip install Pillow==2.2.1
 - Flask -- pip install Flask
 
+How to use:
 1. Extract the files
 2. Run server.py
 3. Open localhost:5000 in your browser -- Or in cmd type 'start firefox "localhost:5000"' or 'start chrome "localhost:5000"'
