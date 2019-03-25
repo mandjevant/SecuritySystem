@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>SecuritySystem v0.1.0</title>
+<meta charset="utf-8">
+
+<link rel="icon" type=image href="{{ url_for('static', filename='images/icon.ico') }}">
+<link rel="shortcut icon" type=image href="{{ url_for('static', filename='images/icon.ico') }}">
+
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/camera.css') }}">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/form.css') }}">
+
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery-migrate-1.1.1.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/superfish.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/forms.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery.ui.totop.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery.equalheights.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/jquery.ui.totop.js') }}">
+<link type=text/javascript href="{{ url_for('static', filename='js/tms-0.4.1.js') }}">
+
+
+
+<script>
+$(document).ready(function () {
+    $('.slider_wrapper')._TMS({
+        show: 0,
+        pauseOnHover: false,
+        prevBu: '.prev',
+        nextBu: '.next',
+        playBu: false,
+        duration: 800,
+        preset: 'fade',
+        pagination: true, //'.pagination',true,'<ul></ul>'
+        pagNums: false,
+        slideshow: 8000,
+        numStatus: false,
+        banners: 'fade',
+        waitBannerAnimation: false,
+        progressBar: false
+    });
+});
+$(document).ready(function () {
+    ! function () {
+        var map = [],
+            names = [],
+            win = $(window),
+            header = $('header'),
+            currClass
+            $('.content').each(function (n) {
+                map[n] = this.offsetTop
+                names[n] = $(this).attr('id')
+            })
+            win
+                .on('scroll', function () {
+                    var i = 0
+                    while (map[i++] <= win.scrollTop());
+                    if (currClass !== names[i - 2])
+                        currClass = names[i - 2]
+                    header.removeAttr("class").addClass(names[i - 2])
+                })
+    }();
+});
+function goToByScroll(id) {
+    $('html,body').animate({
+        scrollTop: $("#" + id).offset().top
+    }, 'slow');
+}
+$(document).ready(function () {
+    $().UItoTop({
+        easingType: 'easeOutQuart'
+    });
+});
+</script>
+<!--[if lt IE 9]>
+<script src="js/html5shiv.js"></script>
+<link rel="stylesheet" media="screen" href="css/ie.css">
+<![endif]-->
+</head>
+<body>
+
+<div id="page3" class="content">
+  <div class="container_12">
+    <div class="grid_12">
+      <div class="slogan">
+        <h3>Our Services</h3>
+        <div class="text1"> Один мочь Тише нем Там роз тмы Лик Под Веру край мечт иду Они. Кто рог тму Без. Оно тме пор Щит милосердью защититель сем бодрствует. Мастикою невестой возможет огромном Извергам. Же Да Во От от да уз Ты. Се То Из проблеск Да из се любезных Аз сапфирну воззвать. Восторге проведет Возносит известна пастухов разность. </div>
+      </div>
+    </div>
+    <div class="grid_3">
+      <div class="box maxheight1"> <img src="/static/images/box1_img2.png" alt="">
+      	<form action="/detector/">
+      		<input type="submit" value="Detector">
+        </form>
+        Щит мою сем сны Хор. На Во прославляю со преступных до Задумчивой ей благовоние Да из да. Вам Дух муз тон мою Для зла. . Которы царевы падаем ВТОРОЙ. Из от На да ты Да. . .  </div>
+    </div>
+    <div class="grid_3">
+      <div class="box maxheight1"> <img src="/static/images/box1_img1.png" alt="">
+        <form action="/ymlTrainer/">
+        	<input type="submit" value="Train an algorithm">	
+        </form>
+        Тут сон унылой Святым Лию Муж Ревущи Лик земныя сын цветах. Перла Се живет обижу уз Твоих ее Не слепо зовет об Вы ст.  </div>
+    </div>
+    <div class="grid_3">
+      <div class="box maxheight1"> <img src="/static/images/box1_img3.png" alt="">
+        <form action="/faceRect/">	
+        	<input type="submit" value="Test camera(s)">
+        </form>
+        Ту Тя по Ко На Им. . Краше из по им вечну ко Пусть не уметь Ко яр. Несметных Или вел буй совокупно Час мою стремнины чуд Небесного сон.</div>
+    </div>
+    <div class="grid_3">
+      <div class="box maxheight1"> <img src="/static/images/box1_img4.png" alt="">
+        <form action="/cameraList/">
+        	<input type="submit" value="Available cameras">
+        </form>
+        Вселенна стройный иссохнет протекла Плотских Кем Тех БРАТСКОЕ век его сне. Те ей ее Се вы ею. Тем зла Злы чту выя уме как тон.  </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container_12">
+    <div class="grid_12">
+      <div class="copy"> 
+      	Design by mandjevant 
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</footer>
+</body>
+</html>
