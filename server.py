@@ -16,8 +16,8 @@ def index():
 
 @app.route('/detector/')
 def detector():
-	cascPath = r"/Classifiers/haarcascade_frontalface_default.xml" #Might need to rewrite the paths
-	ymlLoc = r"C:/trainer/trainer.yml"
+	cascPath = path+r'\Classifiers\haarcascade_frontalface_alt_tree.xml'
+	ymlLoc = path+r'\trainer\trainer.yml'
 	recognizer = cv2.face.LBPHFaceRecognizer_create()
 	recognizer.read(ymlLoc)
 	faceCascade = cv2.CascadeClassifier(cascPath);
@@ -37,7 +37,7 @@ def detector():
 			if conf < 50:
 				cv2.putText(frame,str(nbr_predicted)+"--"+str(conf), (x,y+h),font, 1.1, (0,255,0)) #Add your name
 			else:
-				cv2.putText(frame,str("Unknown" + '?')+"--"+str(conf), (x,y+h),font, 1.1, (0,255,0)) #Draw the text
+				cv2.putText(frame,str("Unknown " + '?')+"--"+str(conf), (x,y+h),font, 1.1, (0,255,0)) #Draw the text
 
 		cv2.imshow('SecuritySystem',frame)
 		
@@ -79,10 +79,10 @@ def cameraList():
 @app.route('/faceRect/')
 def faceRect():
 	# frs on usb cam
-	ff_d_cascPath = r"/Classifiers/haarcascade_frontalface_default.xml"
-	pff_cascPath = r"/Classifiers/haarcascade_profileface.xml"
-	ff_alt_tree_cascPath = r"/Classifiers/haarcascade_frontalface_alt_tree.xml"
-
+	ff_d_cascPath = path+r'\Classifiers\haarcascade_frontalface_default.xml'
+	pff_cascPath = path+r'\Classifiers\haarcascade_profileface.xml'
+	ff_alt_tree_cascPath = path+r'\Classifiers\haarcascade_frontalface_alt_tree.xml'
+	
 	faceCascade = cv2.CascadeClassifier(ff_d_cascPath)
 	profileCascade = cv2.CascadeClassifier(pff_cascPath)
 	alt_treeCascade = cv2.CascadeClassifier(ff_alt_tree_cascPath)
@@ -117,14 +117,14 @@ def faceRect():
 @app.route('/ymlTrainer/')
 def ymlTrainer():
 	recognizer = cv2.face.LBPHFaceRecognizer_create()
-	cascPath = r"/Classifiers/haarcascade_frontalface_default.xml"
-	dataPath = r"/dataSet"
+	cascPath = path+r'\Classifiers\haarcascade_frontalface_default.xml'
+	dataPath = path+r'\dataSet'
 
 	images, labels = img_and_lab(dataPath)
 	cv2.imshow('test',images[0])
 	cv2.waitKey(1)
 
-	ymlLoc = r"/trainer/trainer.yml"
+	ymlLoc = path+r'\trainer\trainer.yml'
 
 	recognizer.train(images, np.array(labels))
 	recognizer.save(ymlLoc)
@@ -133,7 +133,7 @@ def ymlTrainer():
 	return render_template('index.html')
 
 def img_and_lab(path):
-	cascPath = r"/Classifiers/haarcascade_frontalface_default.xml"
+	cascPath = path+r'\Classifiers\haarcascade_frontalface_default.xml'
 	dataPath = dataSetGenerator(0)
 
 	faceCascade = cv2.CascadeClassifier(cascPath)
@@ -164,8 +164,11 @@ def img_and_lab(path):
 
 def dataSetGenerator(getal):
 	cam = cv2.VideoCapture(getal)
-	dataLoc = r"/dataSet"
-	frontal_default_cascPath=cv2.CascadeClassifier(r"/Classifiers/haarcascade_frontalface_default.xml")
+	dataLoc = path+r'\dataSet'
+	cascPath = path+r'\Classifiers\haarcascade_frontalface_default.xml'
+	wrpath = path+r'\dataSet\face-'
+
+	frontal_default_cascPath=cv2.CascadeClassifier(cascPath)
 	#i=0
 	offset=50
 	name = input("Enter your id number ")
@@ -180,7 +183,7 @@ def dataSetGenerator(getal):
 			cv2.imshow('img',frame[y-offset:y+h+offset,x-offset:x+w+offset])
 			cv2.waitKey(10)
 
-			cv2.imwrite(r"/dataSet/face-" + name + '.' + str(r) + ".png", frame[y-offset:y+h+offset,x-offset:x+w+offset])
+			cv2.imwrite(wrpath + name + '.' + str(r) + ".png", frame[y-offset:y+h+offset,x-offset:x+w+offset])
 	cam.release()
 	cv2.destroyAllWindows()
 
@@ -188,4 +191,5 @@ def dataSetGenerator(getal):
 
 
 if __name__ == '__main__':
-  app.run(debug=True)
+	path = os.path.dirname(os.path.abspath(__file__))
+  	app.run(debug=True)
