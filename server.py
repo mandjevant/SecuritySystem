@@ -192,4 +192,4 @@ def dataSetGenerator(getal):
 
 if __name__ == '__main__':
 	path = os.path.dirname(os.path.abspath(__file__))
-  	app.run(debug=True)
+	app.run(debug=True)
